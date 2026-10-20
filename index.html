@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>S. Pavithra | Aspiring Graphic & UI/UX Designer | B.Sc IT Student</title>
-  <meta name="description" content="Personal Portfolio of S. Pavithra - Final-year B.Sc IT student at Sri GVG Visalakshi College for Women, R. Velur. Aspiring Graphic Designer, UI/UX Designer, and NCC 'B' Certificate Cadet.">
-  <meta name="keywords" content="S. Pavithra, Graphic Designer, UI/UX Designer, B.Sc IT, Sri GVG Visalakshi College for Women, R. Velur, Portfolio, Web Developer, NCC B Certificate">
+  <meta name="description" content="Personal Portfolio of S. Pavithra - Final-year B.Sc IT student at Sri GVG Visalakshi College for Women, Coimbatore. Aspiring IT Professional, Creative Problem Solver, and NCC 'B' Certificate Cadet.">
+  <meta name="keywords" content="S. Pavithra, IT Professional, Graphic Designer, UI/UX Designer, B.Sc IT, Sri GVG Visalakshi College for Women, Coimbatore, Portfolio, Web Developer, NCC B Certificate">
   <meta name="author" content="S. Pavithra">
 
   <!-- Favicon -->
@@ -24,6 +24,9 @@
 </head>
 <body>
 
+  <!-- Particle Canvas Background -->
+  <canvas id="particle-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.18"></canvas>
+
   <!-- ==================== NAVIGATION BAR ==================== -->
   <header class="navbar-header" id="navbar">
     <nav class="nav container">
@@ -39,16 +42,14 @@
       <!-- Navigation Links (10 Required Sections) -->
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-list">
-          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">About Me</a></li>
-          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-          <li class="nav-item"><a href="#graphic-design" class="nav-link">Graphic Design</a></li>
-          <li class="nav-item"><a href="#uiux-design" class="nav-link">UI/UX Design</a></li>
-          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-          <li class="nav-item"><a href="#certificates" class="nav-link">Certificates</a></li>
-          <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
-          <li class="nav-item"><a href="#resume" class="nav-link">Resume</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="#home" class="nav-link active"><span class="nav-emoji">🏠</span> Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link"><span class="nav-emoji">👋</span> About Me</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link"><span class="nav-emoji">🛠️</span> Skills</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link"><span class="nav-emoji">🚀</span> Projects</a></li>
+          <li class="nav-item"><a href="#resume" class="nav-link"><span class="nav-emoji">📄</span> Resume</a></li>
+          <li class="nav-item"><a href="#certificates" class="nav-link"><span class="nav-emoji">🏆</span> Certificates</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link"><span class="nav-emoji">📧</span> Contact Me</a></li>
+          <li class="nav-item"><a href="https://github.com" target="_blank" rel="noopener" class="nav-link"><span class="nav-emoji">💻</span> GitHub</a></li>
         </ul>
 
         <!-- Mobile Menu Close Button -->
@@ -66,6 +67,9 @@
           <i class="fa-solid fa-paper-plane"></i>
           <span>Let's Talk</span>
         </a>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
         <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu">
           <i class="fa-solid fa-bars-staggered"></i>
         </button>
@@ -80,12 +84,23 @@
       <div class="purple-blur blur-1"></div>
       <div class="purple-blur blur-2"></div>
 
+      <div class="tech-floats" aria-hidden="true">
+        <span class="tech-float" style="--delay:0s; --x:10%; --dur:18s">&lt;/&gt;</span>
+        <span class="tech-float" style="--delay:3s; --x:80%; --dur:22s">{ }</span>
+        <span class="tech-float" style="--delay:6s; --x:55%; --dur:20s">01</span>
+        <span class="tech-float" style="--delay:1s; --x:25%; --dur:25s">AI</span>
+        <span class="tech-float" style="--delay:4s; --x:70%; --dur:19s">Java</span>
+        <span class="tech-float" style="--delay:8s; --x:40%; --dur:23s">Python</span>
+        <span class="tech-float" style="--delay:2s; --x:90%; --dur:21s">SQL</span>
+        <span class="tech-float" style="--delay:5s; --x:15%; --dur:24s">C++</span>
+      </div>
+
       <div class="container home-container">
         <!-- Hero Left Content -->
         <div class="home-content">
           <div class="status-pill">
             <span class="status-dot"></span>
-            <span>Final Year B.Sc IT &bull; Aspiring Graphic & UI/UX Designer</span>
+            <span>Final Year B.Sc IT · Open to IT Opportunities</span>
           </div>
 
           <h1 class="hero-title">
@@ -94,12 +109,12 @@
           </h1>
 
           <h2 class="hero-subtitle">
-            Information Technology Student | Aspiring Graphic & UI/UX Designer
+            Aspiring IT Professional | Creative Problem Solver | Tech Enthusiast
           </h2>
 
           <div class="hero-quote-badge">
             <i class="fa-solid fa-wand-magic-sparkles purple-icon"></i>
-            <span>&ldquo;Designing simple, creative and user-friendly digital experiences.&rdquo;</span>
+            <span>&ldquo;Passionate about building useful digital experiences through technology, creativity and problem-solving.&rdquo;</span>
           </div>
 
           <p class="hero-bio">
@@ -134,12 +149,12 @@
               <a href="mailto:pavithra.s22062007@gmail.com" class="social-link" title="Direct Email">
                 <i class="fa-solid fa-envelope"></i>
               </a>
-              <a href="#contact" class="social-link" title="Location: R. Velur, Tamil Nadu">
+              <a href="#contact" class="social-link" title="Location: Coimbatore, Tamil Nadu">
                 <i class="fa-solid fa-location-dot"></i>
               </a>
             </div>
             <div class="location-pill">
-              <i class="fa-solid fa-map-pin"></i> R. Velur, Tamil Nadu
+              <i class="fa-solid fa-map-pin"></i> Coimbatore, Tamil Nadu
             </div>
           </div>
         </div>
@@ -167,7 +182,7 @@
               <i class="fa-solid fa-building-columns purple-icon"></i> Sri GVG Visalakshi College for Women
             </p>
             <p class="card-user-location">
-              <i class="fa-solid fa-location-dot purple-icon"></i> R. Velur, Tamil Nadu, India
+              <i class="fa-solid fa-location-dot purple-icon"></i> Coimbatore, Tamil Nadu, India
             </p>
 
             <!-- Focus Pills -->
@@ -226,7 +241,7 @@
               </div>
               <div class="info-card">
                 <span class="info-title"><i class="fa-solid fa-location-dot purple-icon"></i> Location</span>
-                <span class="info-value">R. Velur, Tamil Nadu</span>
+                <span class="info-value">Coimbatore, Tamil Nadu</span>
               </div>
               <div class="info-card">
                 <span class="info-title"><i class="fa-solid fa-graduation-cap purple-icon"></i> Degree</span>
@@ -1040,7 +1055,7 @@
                 <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/pavithra-syr" target="_blank" rel="noopener noreferrer">linkedin.com/in/pavithra-syr</a></p>
                 <p><i class="fa-solid fa-envelope"></i> pavithra.s22062007@gmail.com</p>
                 <p><i class="fa-solid fa-phone"></i> +91 6383578945</p>
-                <p><i class="fa-solid fa-location-dot"></i> R. Velur, Tamil Nadu, India</p>
+                <p><i class="fa-solid fa-location-dot"></i> Coimbatore, Tamil Nadu, India</p>
               </div>
             </div>
 
@@ -1062,7 +1077,6 @@
               <div class="resume-sub-item">
                 <div class="sub-header">
                   <strong>Bachelor of Science in Information Technology (B.Sc IT)</strong>
-                  <span class="date-right">2022 &ndash; 2025 (Final Year)</span>
                 </div>
                 <p class="sub-college">Sri GVG Visalakshi College for Women, Tamil Nadu</p>
               </div>
@@ -1116,7 +1130,7 @@
 
           <!-- Resume Action Buttons -->
           <div class="resume-actions">
-            <a href="resume.pdf" download="S_Pavithra_Resume.pdf" class="btn btn-primary">
+            <a href="resume.pdf" download="S_Pavithra_Resume.pdf" class="btn btn-primary btn-download-resume">
               <i class="fa-solid fa-file-arrow-down"></i>
               <span>Download Resume (PDF)</span>
             </a>
@@ -1152,7 +1166,7 @@
               </div>
               <h3>S. Pavithra</h3>
               <p class="contact-intro">
-                Final-year IT student from Sri GVG Visalakshi College for Women, R. Velur. 
+                Final-year IT student from Sri GVG Visalakshi College for Women, Coimbatore. 
                 Applying for Graphic Designer, UI/UX Designer, and entry-level IT roles.
               </p>
 
@@ -1198,7 +1212,7 @@
                   </div>
                   <div class="way-details">
                     <span class="way-label">Location</span>
-                    <span class="way-text">R. Velur, Tamil Nadu, India</span>
+                    <span class="way-text">Coimbatore, Tamil Nadu, India</span>
                   </div>
                 </div>
 
@@ -1289,7 +1303,7 @@
             </div>
           </a>
           <p class="footer-desc">
-            Final-year B.Sc Information Technology student at Sri GVG Visalakshi College for Women, R. Velur. 
+            Final-year B.Sc Information Technology student at Sri GVG Visalakshi College for Women, Coimbatore. 
             Designing simple, creative and user-friendly digital experiences.
           </p>
         </div>
@@ -1326,7 +1340,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> <strong>S. Pavithra</strong> &bull; Sri GVG Visalakshi College for Women, R. Velur.</p>
+        <p>&copy; <span id="year"></span> <strong>S. Pavithra</strong> &bull; Sri GVG Visalakshi College for Women, Coimbatore.</p>
         <p>Crafted with <i class="fa-solid fa-heart purple-heart"></i> for Graphic Design, UI/UX & IT Roles.</p>
       </div>
     </div>

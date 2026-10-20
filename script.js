@@ -238,4 +238,125 @@ document.addEventListener('DOMContentLoaded', () => {
     yearElement.textContent = new Date().getFullYear();
   }
 
+
+  /* ===================================================
+     9. THEME TOGGLE (DARK / LIGHT MODE)
+     =================================================== */
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  if (savedTheme === 'light') {
+    if (themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+  }
+  updateCanvasVisibility();
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      if (themeIcon) {
+        if (next === 'dark') {
+          themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+          themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+      }
+      updateCanvasVisibility();
+    });
+  }
+
+  function updateCanvasVisibility() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    canvas.style.opacity = isDark ? '0.18' : '0';
+  }
+
+
+  /* ===================================================
+     10. PARTICLE CANVAS BACKGROUND
+     =================================================== */
+  (function initParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const PARTICLE_COUNT = 40;
+    const CONNECT_DIST = 140;
+    const particles = [];
+
+    const colors = ['#8b5cf6', '#7c3aed', '#a78bfa', '#c084fc', '#9333ea'];
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 1.1,
+        vy: (Math.random() - 0.5) * 1.1,
+        r: 2,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECT_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(139,92,246,${1 - dist / CONNECT_DIST})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+
+  /* ===================================================
+     11. SCROLL FADE-UP INTERSECTION OBSERVER
+     =================================================== */
+  const fadeEls = document.querySelectorAll('.skill-group-card, .project-card, .cert-card, .achieve-card, .design-card, .uiux-card, .strength-card');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('in-view');
+        fadeObserver.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => { el.classList.add('fade-up'); fadeObserver.observe(el); });
+
 });

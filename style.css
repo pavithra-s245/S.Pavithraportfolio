@@ -5,6 +5,43 @@
    Technologies: HTML5, CSS3, JavaScript
    =================================================================== */
 
+/* ===== THEME VARIABLES ===== */
+[data-theme="dark"] {
+  --bg-page: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-card-alt: #16161f;
+  --white: #12121a;
+  --text-dark: #f1f5f9;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-white: #f1f5f9;
+  --border-light: #1e1e2e;
+  --border-purple: #2d2b4e;
+  --purple-soft: #1e1b3a;
+  --purple-tint: #161428;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 10px 25px rgba(0,0,0,0.5);
+  --shadow-lg: 0 18px 40px rgba(0,0,0,0.6);
+}
+
+[data-theme="light"] {
+  --bg-page: #faf8ff;
+  --bg-card: #ffffff;
+  --bg-card-alt: #fdfcff;
+  --white: #ffffff;
+  --text-dark: #1e1b4b;
+  --text-body: #475569;
+  --text-muted: #64748b;
+  --text-white: #ffffff;
+  --border-light: #ede9fe;
+  --border-purple: #ddd6fe;
+  --purple-soft: #ede9fe;
+  --purple-tint: #f5f3ff;
+  --shadow-sm: 0 2px 8px rgba(124,58,237,0.05);
+  --shadow-md: 0 10px 25px rgba(124,58,237,0.08);
+  --shadow-lg: 0 18px 40px rgba(124,58,237,0.12);
+}
+
 /* --------------------------------------------------
    1. COLOR PALETTE & GLOBAL VARIABLES
    -------------------------------------------------- */
@@ -82,6 +119,7 @@ body {
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2914,4 +2952,124 @@ button {
     bottom: 1rem;
     max-width: none;
   }
+}
+
+
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-purple);
+  background: var(--bg-card);
+  color: var(--purple-light);
+  font-size: 1.05rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle-btn:hover {
+  background: var(--purple-gradient);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 14px rgba(139,92,246,0.5);
+}
+
+/* ===== FLOATING BUTTON ANIMATION ===== */
+@keyframes floatBtn {
+  0%   { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25%  { transform: translateY(-6px) translateX(2px) rotate(0.5deg); }
+  50%  { transform: translateY(-10px) translateX(0px) rotate(0deg); }
+  75%  { transform: translateY(-6px) translateX(-2px) rotate(-0.5deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+.btn-primary,
+.btn-secondary {
+  animation: floatBtn 4s ease-in-out infinite;
+}
+.btn-primary:hover,
+.btn-secondary:hover {
+  animation-play-state: paused;
+  transform: scale(1.06);
+  box-shadow: 0 0 22px rgba(139,92,246,0.55);
+}
+
+/* ===== HERO SECTION ENTRANCE ANIMATIONS ===== */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-title    { animation: fadeSlideUp 0.8s ease 0.1s both; }
+.hero-subtitle { animation: fadeSlideUp 0.8s ease 0.3s both; }
+.hero-quote-badge { animation: fadeSlideUp 0.8s ease 0.5s both; }
+.hero-bio      { animation: fadeSlideUp 0.8s ease 0.7s both; }
+.hero-btn-group { animation: fadeSlideUp 0.8s ease 0.9s both; }
+
+/* ===== FLOATING PROFILE IMAGE ===== */
+@keyframes floatImage {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+.avatar-ring {
+  animation: floatImage 5s ease-in-out infinite;
+}
+
+/* ===== TECH FLOAT BADGES ===== */
+.tech-floats {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.tech-float {
+  position: absolute;
+  left: var(--x);
+  bottom: -30px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--purple-light);
+  opacity: 0.25;
+  animation: riseTech var(--dur) ease-in-out var(--delay) infinite;
+  pointer-events: none;
+  z-index: 0;
+  text-shadow: 0 0 10px rgba(139,92,246,0.5);
+}
+@keyframes riseTech {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.25; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(-110vh) rotate(15deg); opacity: 0; }
+}
+
+/* ===== SCROLL FADE-UP ANIMATION ===== */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+/* ===== RESUME SECTION IMPROVEMENTS ===== */
+.resume-heading {
+  border-left: 4px solid var(--purple-main);
+  padding-left: 0.75rem;
+}
+.resume-block {
+  background: var(--bg-card-alt);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+/* ===== DOWNLOAD RESUME BUTTON HOVER ===== */
+.btn-download-resume {
+  transition: var(--transition);
+}
+.btn-download-resume:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124,58,237,0.4);
+}
+
+/* ===== RESPONSIVE ADDITIONS ===== */
+@media screen and (max-width: 768px) {
+  .tech-floats { display: none; }
+  .nav-emoji { font-size: 0.9rem; }
 }
